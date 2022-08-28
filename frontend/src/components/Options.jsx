@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import useModal from "../utils/useModal";
+import IncomingCall from "./IncomingCall";
 import "../Styles/style.css";
 
 import { MdCallEnd } from "react-icons/md";
@@ -15,35 +15,28 @@ import {
 import { SocketContext } from "../Context";
 
 const Options = ({ toggle }) => {
-  const {
-    name,
-    callAccepted,
-    myVideo,
-    userVideo,
-    callEnded,
-    stream,
-    call,
-    me,
-    setName,
-    leaveCall,
-    callUser,
-    answerCall,
-    ugasiKameru,
-    ugasiMikrofon,
-  } = useContext(SocketContext);
+  const { leaveCall, ugasiKameru, ugasiMikrofon } = useContext(SocketContext);
 
+  const audioOnOff = () => {
+    ugasiMikrofon();
+    setAudioOn(!audioOn);
+  };
+
+  const videoOnOff = () => {
+    ugasiKameru();
+    setCameraOn(!cameraOn);
+  };
+
+  const [cameraOn, setCameraOn] = useState(true);
+  const [audioOn, setAudioOn] = useState(true);
   return (
     <div className="options">
       <div className="options__left">
-        <div id="stopVideo" className="options__button" onClick={ugasiKameru}>
-          <BsFillCameraVideoFill />
+        <div id="stopVideo" className="options__button" onClick={videoOnOff}>
+          {cameraOn ? <BsFillCameraVideoFill /> : <BsFillCameraVideoOffFill />}
         </div>
-        <div
-          id="muteButton"
-          className="options__button"
-          onClick={ugasiMikrofon}
-        >
-          <BsFillMicFill />
+        <div id="muteButton" className="options__button" onClick={audioOnOff}>
+          {audioOn ? <BsFillMicFill /> : <BsFillMicMuteFill />}
         </div>
 
         <div
@@ -54,6 +47,8 @@ const Options = ({ toggle }) => {
           <MdCallEnd />
         </div>
       </div>
+
+      <IncomingCall />
 
       <div className="options__right">
         <div className="options__button" onClick={() => toggle()}>

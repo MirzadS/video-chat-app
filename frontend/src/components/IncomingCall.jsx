@@ -6,12 +6,14 @@ import { SocketContext } from "../Context";
 const IncomingCall = () => {
   const { callAccepted, call, answerCall } = useContext(SocketContext);
   return (
-    <div>
+    <div className="incoming-call">
       {call.isReceivingCall && !callAccepted && (
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
+        <>
           <h1>{call.name} zove:</h1>
-          <button onClick={answerCall}>Prihvati</button>
-        </div>
+          <button className="answer-call-btn" onClick={answerCall}>
+            Prihvati
+          </button>
+        </>
       )}
     </div>
   );

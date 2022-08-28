@@ -7,16 +7,8 @@ import "../Styles/style.css";
 import { SocketContext } from "../Context";
 
 const Main = () => {
-  const {
-    name,
-    callAccepted,
-    myVideo,
-    userVideo,
-    callEnded,
-    stream,
-    call,
-    answerCall,
-  } = useContext(SocketContext);
+  const { name, callAccepted, myVideo, userVideo, callEnded, stream, call } =
+    useContext(SocketContext);
 
   const { isVisible, toggle } = useModal();
 

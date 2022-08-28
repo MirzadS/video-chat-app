@@ -7,20 +7,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { SocketContext } from "../Context";
 
 function Modal({ isVisible, hide }) {
-  const {
-    name,
-    callAccepted,
-    myVideo,
-    userVideo,
-    callEnded,
-    stream,
-    call,
-    me,
-    setName,
-    leaveCall,
-    callUser,
-    answerCall,
-  } = useContext(SocketContext);
+  const { name, me, setName, callUser } = useContext(SocketContext);
 
   const [idToCall, setIdToCall] = useState("");
 
@@ -37,7 +24,6 @@ function Modal({ isVisible, hide }) {
   };
 
   const onSubmitHandler = (data) => {
-    // alert("submit");
     callUser(idToCall);
     closeModal();
   };

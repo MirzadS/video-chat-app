@@ -63,7 +63,15 @@ video {
 .options {
   padding: 1rem;
   display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--main-darklg);
+}
+
+@media (max-width: 700px) {
+  .options {
+    flex-direction: column;
+  }
 }
 
 .options__left {
@@ -184,7 +192,6 @@ video {
   }
 
   #hangUp {
-    /* display: flex; */
   }
 }
 
@@ -198,4 +205,28 @@ video {
 .person_name {
   color: rgb(222, 215, 215);
   padding-left: 10px;
+}
+
+.incoming-call {
+  color: rgb(233, 224, 224);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 100px;
+  gap: 20px;
+  width: 100%;
+}
+
+.answer-call-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: green;
+  color: #fff;
+  padding: 1px 15px;
+  height: 35px;
+  border-radius: 7px;
+  border: none;
+  font-size: 15px;
+  letter-spacing: 0.6px;
 }
