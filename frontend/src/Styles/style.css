@@ -72,6 +72,7 @@ video {
 
 .options__right {
   margin-left: auto;
+  display: flex;
 }
 
 .options__button {
@@ -159,10 +160,6 @@ video {
   flex-wrap: wrap;
 }
 
-#showChat {
-  display: none;
-}
-
 .header__back {
   display: none;
   position: absolute;
@@ -186,8 +183,8 @@ video {
     width: 100%;
   }
 
-  #showChat {
-    display: flex;
+  #hangUp {
+    /* display: flex; */
   }
 }
 
@@ -196,4 +193,9 @@ video {
   height: 50%;
   width: 700px;
   background-color: red;
+}
+
+.person_name {
+  color: rgb(222, 215, 215);
+  padding-left: 10px;
 }

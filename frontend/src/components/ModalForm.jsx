@@ -37,7 +37,7 @@ function Modal({ isVisible, hide }) {
   };
 
   const onSubmitHandler = (data) => {
-    alert("submit");
+    // alert("submit");
     callUser(idToCall);
     closeModal();
   };
@@ -85,6 +85,7 @@ function Modal({ isVisible, hide }) {
                   placeholder="Unesite kod sastanka"
                   value={idToCall}
                   onChange={(e) => setIdToCall(e.target.value)}
+                  required
                 />
 
                 <button type="submit" className="buttons">

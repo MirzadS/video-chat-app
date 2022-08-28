@@ -3,7 +3,18 @@ import useModal from "./utils/useModal";
 import Modal from "./components/ModalForm";
 import "./Styles/style.css";
 
+// import { MdCallEnd } from "react-icons/md";
+// import {
+//   BsFillMicFill,
+//   BsFillCameraVideoFill,
+//   BsFillCameraVideoOffFill,
+//   BsFillPersonPlusFill,
+//   BsFillDisplayFill,
+//   BsFillMicMuteFill,
+// } from "react-icons/bs";
+
 import { SocketContext } from "./Context";
+import Options from "./components/Options";
 
 function App() {
   const {
@@ -19,6 +30,8 @@ function App() {
     leaveCall,
     callUser,
     answerCall,
+    ugasiKameru,
+    ugasiMikrofon,
   } = useContext(SocketContext);
 
   const { isVisible, toggle } = useModal();
@@ -39,7 +52,7 @@ function App() {
             {stream && (
               <div id="video-grid">
                 <div>
-                  <h1>{name || "Korisnik1"}</h1>
+                  <h1 className="person_name">{name || "Korisnik1"}</h1>
                   <video playsInline muted ref={myVideo} autoPlay />
                 </div>
               </div>
@@ -48,35 +61,13 @@ function App() {
             {callAccepted && !callEnded && (
               <div id="video-grid">
                 <div>
-                  <h1>{call.name || "Korisnik2"}</h1>
+                  <h1 className="person_name">{call.name || "Korisnik2"}</h1>
                   <video playsInline muted ref={userVideo} autoPlay />
                 </div>
               </div>
             )}
           </div>
-          <div className="options">
-            <div className="options__left">
-              <div id="stopVideo" className="options__button">
-                <i className="fa fa-video-camera"></i>
-              </div>
-              <div
-                id="muteButton"
-                className="options__button"
-                onClick={leaveCall}
-              >
-                <i className="fa fa-microphone"></i>
-              </div>
-              <div id="showChat" className="options__button">
-                <i className="fa fa-comment"></i>
-              </div>
-            </div>
-
-            <div className="options__right">
-              <div id="inviteButton" className="options__button">
-                <i className="fas fa-user-plus"></i>
-              </div>
-            </div>
-          </div>
+          <Options toggle={toggle} />
         </div>
 
         {/* <div className="main__right">

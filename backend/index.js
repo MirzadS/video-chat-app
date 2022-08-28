@@ -28,8 +28,13 @@ io.on("connection", (socket) => {
     io.to(userToCall).emit("callUser", { signal: signalData, from, name });
   });
 
+  // ADMIN POSALJE I ZATIM SE EMITUJE KA KORISNIKU
+  // NALAZI SE SIGNAL I IME ADMINA
   socket.on("answerCall", (data) => {
-    io.to(data.to).emit("callAccepted", data.signal);
+    io.to(data.to).emit("callAccepted", {
+      signal: data.signal,
+      name: data.name,
+    });
   });
 });
 
