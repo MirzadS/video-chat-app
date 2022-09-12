@@ -40,18 +40,13 @@ const ContextProvider = ({ children }) => {
 
     const peer = new Peer({ initiator: false, trickle: false, stream });
 
-    // POSTAVIT CE SE KADA ODGOVORIM NA POZIV
-    // I pozvat ce se answerCall
+    // POSLAT CE SE KADA ADMIN ODG. NA POZIV
     peer.on("signal", (data) => {
-      // call.from JE ID
-      // alert("DATA: " + JSON.stringify(data));
-
       socket.emit("answerCall", { signal: data, to: call.from, name });
     });
 
     peer.on("stream", (currentStream) => {
       userVideo.current.srcObject = currentStream;
-      // alert("STREAM: " + JSON.stringify(currentStream));
     });
 
     peer.signal(call.signal);
@@ -63,11 +58,10 @@ const ContextProvider = ({ children }) => {
   const callUser = (id) => {
     const peer = new Peer({ initiator: true, trickle: false, stream });
 
+    console.log(JSON.stringify(peer));
+
     // MREZNI PODACI
     peer.on("signal", (data) => {
-      // alert(JSON.stringify(data));
-      // console.log(JSON.stringify(data));
-
       //KORISNIK ZOVE ADMINA I PROSLIJEDUJE PODATKE
       socket.emit("callUser", {
         userToCall: id,
@@ -99,7 +93,7 @@ const ContextProvider = ({ children }) => {
     window.location.reload();
   };
 
-  const ugasiKameru = () => {
+  const camToggle = () => {
     const videoTrack = stream
       .getTracks()
       .find((track) => track.kind === "video");
@@ -107,7 +101,7 @@ const ContextProvider = ({ children }) => {
     videoTrack.enabled = !videoTrack.enabled;
   };
 
-  const ugasiMikrofon = () => {
+  const micToggle = () => {
     const audioTrack = stream
       .getTracks()
       .find((track) => track.kind === "audio");
@@ -130,8 +124,8 @@ const ContextProvider = ({ children }) => {
         callUser,
         leaveCall,
         answerCall,
-        ugasiKameru,
-        ugasiMikrofon,
+        camToggle,
+        micToggle,
       }}
     >
       {children}

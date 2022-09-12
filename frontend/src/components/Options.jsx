@@ -15,15 +15,15 @@ import {
 import { SocketContext } from "../Context";
 
 const Options = ({ toggle }) => {
-  const { leaveCall, ugasiKameru, ugasiMikrofon } = useContext(SocketContext);
+  const { leaveCall, micToggle, camToggle } = useContext(SocketContext);
 
   const audioOnOff = () => {
-    ugasiMikrofon();
+    micToggle();
     setAudioOn(!audioOn);
   };
 
   const videoOnOff = () => {
-    ugasiKameru();
+    camToggle();
     setCameraOn(!cameraOn);
   };
 
@@ -55,9 +55,9 @@ const Options = ({ toggle }) => {
           <BsFillDisplayFill />
         </div>
 
-        <div id="inviteButton" className="options__button">
+        {/* <div id="inviteButton" className="options__button">
           <BsFillPersonPlusFill />
-        </div>
+        </div> */}
       </div>
     </div>
   );
