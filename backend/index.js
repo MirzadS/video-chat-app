@@ -1,3 +1,4 @@
+const express = require("express");
 const app = require("express")();
 const server = require("http").createServer(app);
 const cors = require("cors");
@@ -12,6 +13,8 @@ const io = require("socket.io")(server, {
 app.use(cors());
 
 const PORT = process.env.PORT || 5000;
+
+// app.use(express.static(path.join(__dirname + "/public")));
 
 app.get("/", (req, res) => {
   res.send("Running");
